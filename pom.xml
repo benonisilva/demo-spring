@@ -45,14 +45,30 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
-			<exclusions>
-				<exclusion>
-					<groupId>org.springframework.boot</groupId>
-					<artifactId>spring-boot-starter-tomcat</artifactId>
-				</exclusion>
-			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-validation</artifactId>
 		</dependency>
 		
+		<!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-validator -->
+<dependency>
+    <groupId>org.hibernate</groupId>
+    <artifactId>hibernate-validator</artifactId>
+    <version>4.3.2.Final</version>
+</dependency>
+<dependency>
+    <groupId>org.hibernate</groupId>
+    <artifactId>hibernate-validator-annotation-processor</artifactId>
+    <version>4.3.2.Final</version>
+</dependency>
+<!-- https://mvnrepository.com/artifact/org.slf4j/slf4j-api -->
+<dependency>
+    <groupId>org.slf4j</groupId>
+    <artifactId>slf4j-api</artifactId>
+    <version>1.6.0</version>
+</dependency>
+
 		        <!-- using swagger annotations in the generrated API -->
         <dependency>
             <groupId>io.swagger</groupId>
@@ -101,6 +117,25 @@
     	<artifactId>validation-api</artifactId>
     </dependency>
 	
+	<dependency>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-data-jpa</artifactId>
+	</dependency>
+
+	<dependency>
+		<groupId>com.h2database</groupId>
+		<artifactId>h2</artifactId>
+		<scope>runtime</scope>
+	</dependency>
+
+	<dependency>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-jetty</artifactId>
+	</dependency>
+	<dependency>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-webflux</artifactId>
+	  </dependency>
 	
 	</dependencies>
 
@@ -144,6 +179,25 @@
 							<language>spring</language>
 							<apiPackage>com.benoni.spring.interview.demo.api</apiPackage>
 							<modelPackage>com.benoni.spring.interview.demo.api.model</modelPackage>
+							<generateSupportingFiles>false</generateSupportingFiles>
+							<generateApis>false</generateApis>
+						   	<configOptions>
+                           		<serializableModel>true</serializableModel>
+                           		<dateLibrary>joda</dateLibrary>
+                       		</configOptions>
+						</configuration>
+					</execution>
+
+					<execution>
+						<id>ApiINtegracoes</id>
+						<goals>
+							<goal>generate</goal>
+						</goals>
+						<configuration>
+							<inputSpec>${basedir}/src/main/resources/api/integracoes.yaml</inputSpec>
+							<language>spring</language>
+							<apiPackage>com.benoni.spring.interview.demo.integracoes.estados</apiPackage>
+							<modelPackage>com.benoni.spring.interview.demo.integracoes.estados.model</modelPackage>
 							<generateSupportingFiles>false</generateSupportingFiles>
 							<generateApis>false</generateApis>
 						   	<configOptions>

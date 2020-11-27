@@ -1,0 +1,51 @@
+swagger: "2.0"
+info:
+  title: Sample API
+  description: API description in Markdown.
+  version: 1.0.0
+host: servicodados.ibge.gov.br
+basePath: /api/v1/
+schemes:
+  - https
+paths:
+  /localidades/estados/{codigoEstado}:
+    get:
+      summary: dwdwe
+      description: sta
+      tags: 
+      - "getestado"
+      produces:
+        - application/json
+      parameters:
+        - name: codigoEstado
+          in: path
+          description: codigo
+          required: true
+          type: string  
+      responses:
+        200:
+          description: cidades por nome ou estado id
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/ResponseEstado'
+          
+          
+definitions:
+    ResponseEstado:
+      type: "object"
+      properties:
+         nome:
+           type: string
+         id:
+           type: integer
+         regiao:
+           $ref: '#/definitions/Regiao'
+    
+    Regiao:
+      type: "object"
+      properties:
+         sigla: 
+           type: string
+
+        

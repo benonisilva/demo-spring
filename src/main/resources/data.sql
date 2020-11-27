@@ -1,0 +1,8 @@
+insert into ESTADO_ENTITY (ID, NOME, SIGLA) VALUES (1, 'ACRE', 'AC');
+insert into ESTADO_ENTITY (ID, NOME, SIGLA) VALUES (2, 'ALAGOAS', 'AL');
+insert into ESTADO_ENTITY (ID, NOME, SIGLA) VALUES (17, 'PERNAMBUCO', 'PE');
+
+
+insert into CIDADE_ENTITY (ID, ESTADO_ID, NOME) VALUES(1,1,'altamira');
+insert into CIDADE_ENTITY (ID, ESTADO_ID, NOME) VALUES(2,17,'recife');
+insert into CIDADE_ENTITY (ID, ESTADO_ID, NOME) VALUES(3,17,'paulista');

@@ -10,26 +10,104 @@ schemes:
 paths:
   /cidades:
     get:
-      summary: Lista de cidades.
-      description: Cidades cadastradas
+      summary: Lista de cidades por nome e ou estadoId
+      description: Cidades cadastradas por nome e ou estadoId
+      tags: 
+      - "GetCidades"
       produces:
         - application/json
+      parameters:
+        - name: nome
+          in: query
+          description: nome da cidade
+          required: false
+          type: string  
+        - name: estadoId
+          in: query
+          description: estadoId
+          required: false
+          type: integer    
       responses:
         200:
-          description: cidades
+          description: cidades por nome ou estado id
           schema:
             type: array
             items:
               $ref: '#/definitions/Cidade'
+    post:
+      tags:
+      - "InserirCidade"
+      summary: "Gera uma lista de orçamentos novos"
+      description: "Gera uma lista de orçamentos novos"
+      parameters:
+        - in: body
+          name: body
+          description: "nova cidade"
+          schema:
+              $ref: "#/definitions/Cidade"
+      responses:
+        200:
+          description: "Operação realizada com sucesso"
+          schema:
+            $ref: "#/definitions/Cidade"
+        400:
+          description: "Bad Request"
+          schema:
+            $ref: "#/definitions/Error"
+        404:
+          description: "Not Found"
+        500:
+          description: "Internal Server Error"              
           
           
 definitions:
    Cidade:
       type: "object"
+      required:
+        - nome
+        - estadoId
       properties:
          nome:
           type: string
+          minLength: 3
          estado: 
-           type: "integer"
-            
-    
+           type: string
+         estadoId:
+           type: integer
+         sigla:
+           $ref: '#/definitions/SIGLAS'
+   Error:
+      type: object
+   
+   SIGLAS:
+     type: string
+     enum: &SIGLAS
+      - AC
+      - AL
+      - AP
+      - AM
+      - BA
+      - CE
+      - DF
+      - ES
+      - GO
+      - MA
+      - MT
+      - MS
+      - MG
+      - PA
+      - PB
+      - PR
+      - PE
+      - PI
+      - RJ
+      - RN
+      - RS
+      - RO
+      - RR
+      - SC
+      - SP
+      - SE
+      - TO  
+
+        
