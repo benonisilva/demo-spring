@@ -59,7 +59,125 @@ paths:
         500:
           description: "Internal Server Error"              
           
-          
+  /clientes:
+    get:
+      summary: Clientes
+      description: Clientes
+      tags: 
+      - "clientes"
+      produces:
+        - application/json
+      parameters:
+        - name: nome
+          in: query
+          description: nome da cidade
+          required: false
+          type: string  
+      responses:
+        200:
+          description: clientes
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Cliente'
+    post:
+      tags:
+      - "inserirCliente"
+      summary: "das"
+      description: "da"
+      parameters:
+        - in: body
+          name: body
+          description: "nova cidade"
+          schema:
+              $ref: "#/definitions/Cliente"
+      responses:
+        200:
+          description: "Operação realizada com sucesso"
+          schema:
+            $ref: "#/definitions/Cliente"
+        400:
+          description: "Bad Request"
+          schema:
+            $ref: "#/definitions/Error"
+        404:
+          description: "Not Found"
+        500:
+          description: "Internal Server Error" 
+
+  /clientes/{id}:
+    get:
+      summary: get cleinte
+      description: dadas
+      tags: 
+      - "getcliente"
+      produces:
+        - application/json
+      parameters:
+          - in: path
+            name: id
+            type: integer
+            description: dewdew
+            required: true
+      responses:
+        200:
+          description: cddew
+          schema:
+            $ref: '#/definitions/Cliente'
+        404:
+          description: "Not Found"            
+            
+    delete:
+      summary: delet cleinte
+      description: dadas
+      tags: 
+      - "deletcliente"
+      produces:
+        - application/json
+      parameters:
+          - in: path
+            name: id
+            type: integer
+            description: dewdew
+            required: true
+      responses:
+        200:
+          description: cddew
+          schema:
+            type: string  
+        404:
+          description: "Not Found"          
+            
+
+    put:
+      tags:
+      - "updateCliente"
+      summary: "das"
+      description: "da"
+      parameters:
+        - in: path
+          name: id
+          type: integer
+          required: true
+        - in: body
+          name: body
+          description: "nova cidade"
+          schema:
+              $ref: "#/definitions/Cliente"
+      responses:
+        200:
+          description: "Operação realizada com sucesso"
+          schema:
+            $ref: "#/definitions/Cliente"
+        400:
+          description: "Bad Request"
+          schema:
+            $ref: "#/definitions/Error"
+        404:
+          description: "Not Found"
+        500:
+          description: "Internal Server Error"             
+      
 definitions:
    Cidade:
       type: "object"
@@ -76,9 +194,38 @@ definitions:
            type: integer
          sigla:
            $ref: '#/definitions/SIGLAS'
+   Cliente:
+      type: "object"
+      required:
+        - nome
+        - cidadeId
+      properties:
+         id:
+          type: integer
+         cidadeId:
+          type: integer 
+         nome:
+          type: string
+          minLength: 3
+         dataNascimento:
+           type: string
+           format: date
+           pattern: ^\d{4}-\d{2}-\d{2}$
+         idade:
+           type: integer
+         sexo:
+           $ref: '#/definitions/Sexo'
+         cidade:
+           $ref: '#/definitions/Cidade'
    Error:
       type: object
    
+   Sexo:
+    type: string
+    enum: &Sexo
+     - M
+     - F
+     - N
    SIGLAS:
      type: string
      enum: &SIGLAS
