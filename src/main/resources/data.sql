@@ -6,3 +6,7 @@ insert into ESTADO_ENTITY (ID, NOME, SIGLA) VALUES (17, 'PERNAMBUCO', 'PE');
 insert into CIDADE_ENTITY (ID, ESTADO_ID, NOME) VALUES(1,1,'altamira');
 insert into CIDADE_ENTITY (ID, ESTADO_ID, NOME) VALUES(2,17,'recife');
 insert into CIDADE_ENTITY (ID, ESTADO_ID, NOME) VALUES(3,17,'paulista');
+
+insert into CLIENTE_ENTITY (ID, CIDADE_ID, 	DATA_NASCIMENTO , NOME, SEXO)  VALUES(1,1, '2000-01-01 03:23:34.234' ,'morador altamira', 'S');
+insert into CLIENTE_ENTITY (ID, CIDADE_ID, 	DATA_NASCIMENTO , NOME, SEXO)  VALUES(2,1, '2001-01-01 03:23:34.234' ,'outro morador altamira', 'F');
+insert into CLIENTE_ENTITY (ID, CIDADE_ID, 	DATA_NASCIMENTO , NOME, SEXO)  VALUES(3,3, '2001-01-01 03:23:34.234' ,'recifense', 'F');

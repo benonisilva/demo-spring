@@ -22,13 +22,20 @@ public class ClienteMappers {
             protected void configure() {
                 when(Conditions.isNotNull()).using(ConverterDataToIdade.dataToIdade).map(source.getDataNascimento())
                         .idade(null);
-                // when(Conditions.isNotNull()).using(estadoToSiglaEstado).map(source.getEstado()).setSigla(null);
+                when(Conditions.isNotNull()).using(ConverterEstado.estadoToNomeEstado)
+                        .map(source.getCidade().getEstado()).getCidade().estado(null);
+                when(Conditions.isNotNull()).using(ConverterEstado.estadoToSiglaEstado)
+                        .map(source.getCidade().getEstado()).getCidade().setSigla(null);
+
+                when(Conditions.isNotNull()).using(ConverterDataToIdade.dateToLocalDate).map(source.getDataNascimento())
+                        .dataNascimento(null);
             }
         };
 
         PropertyMap<Cliente, ClienteEntity> modelToDomain = new PropertyMap<Cliente, ClienteEntity>() {
             protected void configure() {
-
+                when(Conditions.isNotNull()).using(ConverterDataToIdade.localDateToCalendar)
+                        .map(source.getDataNascimento()).setDataNascimento(null);
             }
         };
         modelMapper.addMappings(domainToModel);

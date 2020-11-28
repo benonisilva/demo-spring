@@ -9,9 +9,11 @@ public interface IClienteService {
 
     boolean exists(Integer idCliente);
 
-    Cliente updateCliente(Cliente cliente, Integer idCliente);
+    Cliente updateCliente(Cliente cliente);
 
     Integer delete(Integer idCliente);
 
     List<Cliente> consultarClienteByNome(String nome);
+
+    Cliente getById(Integer id);
 }

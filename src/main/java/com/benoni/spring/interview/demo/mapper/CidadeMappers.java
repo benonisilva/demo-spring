@@ -31,8 +31,10 @@ public class CidadeMappers {
             protected void configure() {
                 when(Conditions.isNotNull()).map().nome(source.getNome());
                 when(Conditions.isNotNull()).map().estadoId(source.getEstadoId());
-                when(Conditions.isNotNull()).using(estadoToNomeEstado).map(source.getEstado()).estado(null);
-                when(Conditions.isNotNull()).using(estadoToSiglaEstado).map(source.getEstado()).setSigla(null);
+                when(Conditions.isNotNull()).using(ConverterEstado.estadoToNomeEstado).map(source.getEstado())
+                        .estado(null);
+                when(Conditions.isNotNull()).using(ConverterEstado.estadoToSiglaEstado).map(source.getEstado())
+                        .setSigla(null);
             }
         };
 
@@ -45,17 +47,4 @@ public class CidadeMappers {
         modelMapper.addMappings(modelToDomain);
         return modelMapper;
     }
-
-    private Converter<EstadoEntity, String> estadoToNomeEstado = ctx -> {
-        EstadoEntity estado = ctx.getSource();
-        return estado.getNome();
-
-    };
-
-    private Converter<EstadoEntity, SIGLAS> estadoToSiglaEstado = ctx -> {
-        EstadoEntity estado = ctx.getSource();
-        SIGLAS sigla = SIGLAS.fromValue(estado.getSigla());
-        return sigla;
-
-    };
 }
